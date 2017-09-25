@@ -1,0 +1,24 @@
+
+
+
+* pjax
+https://github.com/defunkt/jquery-pjax
+https://pjax.herokuapp.com/
+
+
+* admui
+https://192.168.1.119/svn/admui/ 
+这个可以导出来到时做参考用,须要nodejs环境
+node service/bin/www
+npm start
+
+
+* 前新系统项目
+https://192.168.1.119/svn/house/ 
+
+
+* 
+house.cc/admin.php/Admin/login 
+house.cc/admin.php/Admin/index 
+
+

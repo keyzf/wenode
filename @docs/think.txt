@@ -1,0 +1,202 @@
+
+
+echo U('Home/Sale/view',array('id'=>1234),true,false,true)."<br>\n";
+echo U('/view',array('id'=>1234))."<br>\n";
+echo U('/index',array('keyword'=>'abcd'))."<br>\n";
+// /Sale/view/id/1234.html﻿
+echo "/view/1234.html";
+dump($_GET);
+<{:U('dsfc/'.$vo['id'])}>
+
+
+有个疑问就是使用assign和不用有什么区别。例如：
+```
+$name = 'william';
+$this->assign('name',$name);
+$this->name = $name;
+```
+两者在前段都是用{$name}输出。 ??? 
+如果类有属性,名称($name)正好是你想要渲染到模板的变量名($name),你看看$this->name = $name;还能输出吗?
+
+------------------------------------------------ 
+### Import
+ - import("@.Extend.Pinyin");
+ - import('Com.Sina.Util.UnitTest');
+ - Vendor('Zend.Filter.Dir');
+ - Vendor('Zend.Filter.Dir','','.class.php');
+ - import('Zend.Filter.Dir',VENDOR_PATH);
+
+------------------------------------------------ 
+### ThinkPHP-Debug
+
+* 调试sql
+echo $M->getLastSql();
+
+
+------------------------------------------------ 
+### ThinkPHP-Url
+
+<{:U('/login/'.$pid,'','')}>
+<{:U('/Home/Advert/click',array('pid'=>$pid),'')}>
+<{:U('Home/Advert/click',array('pid'=>$pid),'')}>
+<{:U('Home/Advert/click','pid=1234'.$pid)}>
+__ROOT__Advert/click/pid/<{$pid}>
+<{:U('Advert/click','pid='.$pid)}>
+<{:U('Advert/click/pid'.$pid)}>
+
+
+------------------------------------------------ 
+### ThinkPHP模型
+
+
+* 去重统计:独立ip（访问量）
+  $ips = M('news_log')->where($wherePv)->count('DISTINCT ip'); 
+
+* JOIN 
+  $count= $M->alias('c')->join('LEFT JOIN __MEMBER__ m ON m.mid = c.mid')->where($where)->count();
+  $list = $M->alias('c')->join('LEFT JOIN __MEMBER__ m ON m.mid = c.mid')->where($where)->field('c.*,m.mname,m.mid,m.thumb')->page("$page,$amount")->order("c.id desc")->select();
+
+
+----------
+
+
+* 创建（Create）
+$User = M("User"); // 实例化User对象
+$User->data($data)->add();
+
+
+* 读取（Read）
+$list = $User->where('status=1')->order('create_time')->limit(10)->select();
+$User->where('status=1 AND name="think"')->find();
+$nickname = $User->where('id=3')->getField('nickname');
+
+
+* 更新（Update）
+$User->save($data); 
+
+
+删除（Delete）
+$User->where('id=5')->delete(); // 删除id为5的用户数据
+
+* 获取最后一次执行sql语句:
+$sql = $model ->getLastSql();
+
+
+------------------------------------------------ 
+### ThinkPHP模板标签
+
+* 使用函数
+{$webTitle|md5|strtoupper|substr=0,3}
+<?php echo (substr(strtoupper(md5($webTitle)),0,3)); ?>
+
+* {$time|date="Y-m-d H:i",###}
+* <{$data.createdate|date="Y-m-d H:i",###}>
+* <{$card.cardnum|default="---"}>
+
+
+* Empty标签
+<empty name="name">name为空<else /> name不为空</empty>
+
+
+* IF标签
+<if condition="($name eq 1) OR ($name gt 100) "> value1
+<elseif condition="$name eq 2"/>value2
+<else /> value3
+</if>
+
+<if condition="(I('get.debug') neq 'vabc')">
+</if>
+
+* Foreach标签
+<foreach name="list" item="vo">
+    {$vo.id}
+    {$vo.name}
+</foreach>
+
+
+* volist标签(嵌套)
+<volist name="info" id="vo"> 
+  <a href="/view?id=<{$vo.SALE_ID}>">
+    <h2><{$vo.SALE_SUBJECT}></h2>
+    <volist name="vo.TAGS" id="tag"> 
+    <p class="tag"><{$tag}></p>
+    </volist>
+  </a>
+</volist>
+
+<foreach name='data' item='vo' key="k">
+<li <if condition="(($k+1)%4 eq 0)">class="row-end"</if> > 
+<{$vo.title}>
+</li>
+</foreach>
+
+
+volist 获取数组的键名
+    <volist name="cfg_fa" id="vo"> 
+    <option value="<{$Think.lang.$key}>" <eq name="key" value="$get.cfg_fa">selected</eq>><{$vo}></option>
+    </volist>
+
+* 比较标签
+<eq name="name" value="value">value</eq>
+eq或者 equal	等于
+neq 或者notequal	不等于
+gt	大于
+egt	大于等于
+lt	小于
+elt	小于等于
+heq	恒等于
+nheq	不恒等于
+
+$where['SALE_MAP'] = array('gt',0); //图片张数 
+$where['TAG_IDS'] = array('neq',''); // test
+$where['id'] = array('gt',1);
+$where['_string'] = " (begindate=0 OR begindate<'$nowt' ) AND (enddate=0 OR enddate>'$nowt') ";
+$where['begindate'] = array(array('eq',0),array('lt',$nowt), 'or') ;
+$where['enddate'] = array(array('eq',0),array('gt',$nowt), 'or') ;
+
+* Switch标签
+<switch name="变量" >
+<case value="值1" break="0或1">输出内容1</case>
+<case value="值2">输出内容2</case>
+<default />默认情况
+</switch>
+
+* php标签
+<php>echo 'Hello,world!';</php>
+
+* 包含
+<include file="./Tpl/Pubs/hfoot.html" />
+
+------------------------------------------------ 
+### ThinkPHP配置
+
+
+* .htaccess
+#RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L] (php:ts)
+RewriteRule ^(.*)$ index.php [L,E=PATH_INFO:$1] (php:nts)
+
+*. index.php
+define('__ROOT__', 'http://'.$_SERVER['HTTP_HOST'].'/news'); // 注意区别,不要提交到线上
+define('RUNTIME_PATH', 'E:/www/@tmp-files/Think-Runtimes/news/'); 
+
+
+*. config.php
+
+	'TMPL_PARSE_STRING'		=>array(
+		'__STATIC__'		=>__ROOT__.'/Static',
+		'__JS__'			=>__ROOT__.'/Static/js',
+		'__CSS__'			=>__ROOT__.'/Static/css',
+		'__IMG__'			=>__ROOT__.'/Static/images'
+	),
+
+	'URL_ROUTE_RULES'	 =>array(
+		'reg/:tel' 	=> 'Register/index',
+		'reg'	 	=> 'Register/index',
+		'a/:id'	=> 'News/detail',
+		'b/:id'	=> 'Baike/detail', // 百科
+        'v/:id'	=> 'Video/detail'
+	),
+
+
+
+

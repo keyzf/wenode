@@ -1,0 +1,17 @@
+
+
+
+* 用update批量更新
+
+ 行了，批量更新不要使用他save了，一定要使用模型里面update
+ --- 模型更新后会保存上次的数据，下次的数据和上次一样就会被他过虑。。。
+
+
+* share方法,模板变量赋值
+
+ think\View::share('name','value');
+ // 或者批量赋值
+ think\View::share(['name1'=>'value','name2'=>'value2']);
+ --- V5.0.4+开始，支持在任何地方使用静态方法进行模板变量赋值
+
+ - https://www.kancloud.cn/manual/thinkphp5/118116
