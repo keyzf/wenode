@@ -1,0 +1,47 @@
+
+
+* 一般id，统一用 int(10), unsigned
+  (使用字符串做为主键除外)
+
+
+* pid，关联父id，属性同id
+  (使用字符串做为关联键除外)
+
+
+* 记录字段：add_ip, add_user, add_time, edit_ip, edit_user, edit_time
+  可考虑统一用（aip, auser, atime, eip, euser, etime）等简写前缀
+
+
+* ip字段，统一用 varchar(255), 直接保存ip原始数据
+  包含代理格式(123.45.67.89, 23.45.67.189)，ipv6格式(2000::1:2345:6789:abcd, FE80::1)
+
+
+* 标题，名称字段统一
+ - 候选字段：title, name, subject
+
+
+* 排序字段统一
+ - 候选字段：top, order (sql关键字),  
+
+
+* 开关字段统一
+ - 候选字段：valid, enable, checked, open (sql关键字), close (sql关键字), show (sql关键字)
+
+
+* 配置字段统一
+ - 候选字段：cfgs, cfg, config(s)
+
+
+* 备注字段统一
+ - 候选字段：note, remark, detial, content
+
+
+* 拼写错误（包含拼音，拼音简写错误）
+ - 一定要尽早改正！！！
+
+
+* MySQL中的datetime与timestamp比较
+ - http://database.51cto.com/art/200905/124240.htm
+ - TIMESTAMP列的显示格式与DATETIME列相同。换句话说，显示宽度固定在19字符，并且格式为YYYY-MM-DD HH:MM:SS。
+ - datetime 以'YYYY-MM-DD HH:MM:SS'格式检索和显示DATETIME值。支持的范围为'1000-01-01 00:00:00'到'9999-12-31 23:59:59'
+ - TIMESTAMP值不能早于1970或晚于2037

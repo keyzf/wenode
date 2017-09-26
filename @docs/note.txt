@@ -22,3 +22,18 @@ house.cc/admin.php/Admin/login
 house.cc/admin.php/Admin/index 
 
 
+----------------------------------------
+
+ ThinkPHP 5.X
+
+* 时间戳处理
+https://www.kancloud.cn/manual/thinkphp5/138668
+
+坑爹的时间戳自动输出
+自作聪明的功能啊
+@流年 要怎么单独关闭？
+坑爹的功能！！
+@mushangcao 原来如此，这般说来，意义不大了，我都是自行处理了
+
+* between
+$whr['create_time'] = ['between',[$startDate,$endDate]]; 
