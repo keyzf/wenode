@@ -2,6 +2,7 @@
 
 ----------------------------------------------------------------------
 
+$this->error('ERR',url('user/index'),1);
 
 echo U('Home/Sale/view',array('id'=>1234),true,false,true)."<br>\n";
 echo U('/view',array('id'=>1234))."<br>\n";
