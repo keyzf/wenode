@@ -1,0 +1,21 @@
+
+
+不放在根目录下，这里路径会不对。
+site.js
+if (settings.themeColor && settings.themeColor !== 'primary')
+$.ctx.replace('/admin.php','') + 
+
+http://192.168.1.228/house/public/static/admui/themes/classic/base/skins/green.css
+http://192.168.1.228/             static/admui/themes/classic/base/skins/green.css
+http://192.168.1.228/house/public/admin.php/static/admui/themes/classic/base/skins/green.css
+
+$link.attr('href', _ROOT_ + '/static/...
+
+var _ROOT_ = '__ROOT__', _ADMUI_ = '__ADMUI__';
+Breakpoints();
+
+data-root="__ROOT__"
+
+可以取ctx变量的前面节,
+ --- 万一 admin.php路径改变，可能出问题。
+把后台地址隐藏为：/public/xfzg/admin.php
