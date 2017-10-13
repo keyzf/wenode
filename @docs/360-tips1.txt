@@ -1,5 +1,32 @@
 
 
+* 区域
+* 地铁/站点
+* 状态/推荐
+* 区间
+* 关联
+
+
+
+* root-path
+ - $.root = $('#admui-signOut').data('root') || '';
+ - data-root="__ROOT__"
+
+*  更新
+ - 这种更新,放在哪里?
+ - $path = RUNTIME_PATH.'store/';
+
+*  pjax
+ - 两次pjax
+ - 
+
+*  Editor
+ - news
+ - 单页
+
+
+=--------------------------------------------- 
+
 不放在根目录下，这里路径会不对。
 site.js
 if (settings.themeColor && settings.themeColor !== 'primary')

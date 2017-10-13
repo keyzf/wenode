@@ -1,5 +1,13 @@
 ﻿
 
+
+http://www.thinkphp.cn/topic/43731.html
+自动生成 tp5 crud 代码的工具
+
+https://www.kancloud.cn/manual/thinkphp5/173651
+快速生成控制器类
+
+
 ----------------------------------------------------------------------
 
 $this->error('ERR',url('user/index'),1);
